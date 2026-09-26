@@ -47,6 +47,98 @@
             min-height: 100vh;
         }
 
+        /* ХАОТИЧНЕ ЧЕРВОНЕ СВІТІННЯ НА ФОНІ */
+        .ambient-glow-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.28;
+            will-change: transform, opacity;
+        }
+
+        .glow-orb-1 {
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, #ff2a1d 0%, rgba(255, 42, 29, 0) 70%);
+            top: -100px;
+            left: -100px;
+            animation: floatGlow1 22s infinite ease-in-out alternate;
+        }
+
+        .glow-orb-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #d01107 0%, rgba(208, 17, 7, 0) 70%);
+            bottom: -150px;
+            right: -100px;
+            animation: floatGlow2 28s infinite ease-in-out alternate;
+        }
+
+        .glow-orb-3 {
+            width: 440px;
+            height: 440px;
+            background: radial-gradient(circle, #ff4d3b 0%, rgba(255, 77, 59, 0) 70%);
+            top: 45%;
+            left: 55%;
+            animation: floatGlow3 20s infinite ease-in-out alternate;
+        }
+
+        @keyframes floatGlow1 {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+            50% { transform: translate(140px, 120px) scale(1.15); opacity: 0.35; }
+            100% { transform: translate(60px, 240px) scale(0.9); opacity: 0.22; }
+        }
+
+        @keyframes floatGlow2 {
+            0% { transform: translate(0, 0) scale(1.1); opacity: 0.3; }
+            50% { transform: translate(-180px, -90px) scale(0.85); opacity: 0.18; }
+            100% { transform: translate(-90px, -200px) scale(1.2); opacity: 0.32; }
+        }
+
+        @keyframes floatGlow3 {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.15; }
+            50% { transform: translate(-30%, -20%) scale(1.1); opacity: 0.28; }
+            100% { transform: translate(-70%, -60%) scale(0.95); opacity: 0.18; }
+        }
+
+        /* 1. ФОНОВА ВОТЕРМАРКА */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.12' font-family='JetBrains Mono, monospace, sans-serif' font-size='13' font-weight='700' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25 120 70)'%3Et.me/k_dvizh%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* 2. ЛЕГКА ВОТЕРМАРКА ПОВЕРХ УСІХ БЛОКІВ САЙТУ */
+        .watermark-overlay-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Пропускає всі кліки та виділення тексту */
+            z-index: 9999;        /* Розміщується поверх усіх панелей і карток */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.055' font-family='JetBrains Mono, monospace, sans-serif' font-size='13' font-weight='700' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25 120 70)'%3Et.me/k_dvizh%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
         .container {
             position: relative;
             z-index: 2;
@@ -497,6 +589,16 @@
     </style>
 </head>
 <body>
+
+<!-- ЛЕГКА ВОТЕРМАРКА ПОВЕРХ БЛОКІВ САЙТУ -->
+<div class="watermark-overlay-top"></div>
+
+<!-- АНІМОВАНЕ ЧЕРВОНЕ СВІТІННЯ -->
+<div class="ambient-glow-wrap">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+</div>
 
 <div class="container">
     <header>
