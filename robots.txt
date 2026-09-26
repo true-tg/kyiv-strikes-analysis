@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://true-tg.github.io/kyiv-strikes-analysis/sitemap.xml
