@@ -112,7 +112,7 @@
             100% { transform: translate(-70%, -60%) scale(0.95); opacity: 0.18; }
         }
 
-        /* ВОТЕРМАРКА-ШАХІВНИЦЯ НА ФОНІ */
+        /* 1. ФОНОВА ВОТЕРМАРКА */
         body::before {
             content: '';
             position: fixed;
@@ -122,7 +122,20 @@
             height: 100vh;
             pointer-events: none;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.16' font-family='JetBrains Mono, monospace, sans-serif' font-size='13' font-weight='700' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25 120 70)'%3Et.me/k_dvizh%3C/text%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.12' font-family='JetBrains Mono, monospace, sans-serif' font-size='13' font-weight='700' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25 120 70)'%3Et.me/k_dvizh%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* 2. ЛЕГКА ВОТЕРМАРКА ПОВЕРХ УСІХ БЛОКІВ САЙТУ */
+        .watermark-overlay-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* Пропускає всі кліки та виділення тексту */
+            z-index: 9999;        /* Розміщується поверх усіх панелей і карток */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='140' viewBox='0 0 240 140'%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' fill-opacity='0.055' font-family='JetBrains Mono, monospace, sans-serif' font-size='13' font-weight='700' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25 120 70)'%3Et.me/k_dvizh%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
 
@@ -247,7 +260,7 @@
 
         .methodology-text-wrapper {
             position: relative;
-            max-height: 72px; /* Показує початок першого абзацу */
+            max-height: 72px;
             overflow: hidden;
             transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
             color: #b5bcc8;
@@ -256,7 +269,7 @@
         }
 
         .methodology-text-wrapper.expanded {
-            max-height: 600px; /* Достатньо для повного тексту */
+            max-height: 600px;
         }
 
         .methodology-text-wrapper p {
@@ -576,6 +589,9 @@
     </style>
 </head>
 <body>
+
+<!-- ЛЕГКА ВОТЕРМАРКА ПОВЕРХ БЛОКІВ САЙТУ -->
+<div class="watermark-overlay-top"></div>
 
 <!-- АНІМОВАНЕ ЧЕРВОНЕ СВІТІННЯ -->
 <div class="ambient-glow-wrap">
